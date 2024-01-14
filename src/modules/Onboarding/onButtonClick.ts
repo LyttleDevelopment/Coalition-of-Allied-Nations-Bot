@@ -7,6 +7,7 @@ import {
 import { JOIN_CIVILIAN, REQUEST_OTHER } from './onOnboardingCreate';
 import {
   CIVILIAN_ROLE,
+  COALITION_OF_ALLIED_NATIONS,
   ONBOARDING_CHANNEL,
   ONBOARDING_NOTIFY_ROLES,
 } from '../../../constants';
@@ -24,14 +25,23 @@ export function onButtonClick(interaction: ButtonInteraction) {
 
 async function joinCivilian(interaction: ButtonInteraction) {
   await interaction.deferUpdate();
+  const member = interaction.member as GuildMember;
 
   // give user civilian role
-  const role = interaction.guild.roles.cache.find(
+  const role1 = interaction.guild.roles.cache.find(
     (r) => r.id === CIVILIAN_ROLE,
   );
-  if (!role) return;
-  const member = interaction.member as GuildMember;
-  await member.roles.add(role);
+  if (role1) {
+    await member.roles.add(role1);
+  }
+
+  // give user civilian role
+  const role2 = interaction.guild.roles.cache.find(
+    (r) => r.id === COALITION_OF_ALLIED_NATIONS,
+  );
+  if (role2) {
+    await member.roles.add(role2);
+  }
 }
 
 async function requestOther(interaction: ButtonInteraction) {
