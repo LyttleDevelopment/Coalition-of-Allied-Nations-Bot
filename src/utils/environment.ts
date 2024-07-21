@@ -8,7 +8,6 @@ const requiredEnvironmentVariables = [
   'NODE_ENV',
   'CLIENT_ID',
   'BOT_TOKEN',
-  'DATABASE_URL',
 ] as const;
 
 // This is a type that is either a string or one of the values in the array
