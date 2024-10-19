@@ -17,6 +17,8 @@ async function interactionCreate(interaction: Interaction): Promise<void> {
   // Get the user id
   const userId = interaction?.user?.id ?? interaction?.member?.user.id ?? null;
   const inGuild =
+    // TODO: FIX THIS!
+    // @ts-ignore
     !!interaction?.guild ??
     interaction?.inGuild() ??
     !!interaction?.guildId ??
